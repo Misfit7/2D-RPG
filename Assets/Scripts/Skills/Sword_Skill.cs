@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,18 @@ public class Sword_Skill : Skill
     public SwordType swordType = SwordType.Regular;
 
     [Header("Bounce Info")]
-    [SerializeField] private int amountOfBounce;
+    [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
 
+    [Header("Pierce Info")]
+    [SerializeField] private int pierceAmount;
+    [SerializeField] private float pierceGravity;
+
+    [Header("Spin Info")]
+    [SerializeField] private float hitCooldown = 0.35f;
+    [SerializeField] private float maxTravelDistance;
+    [SerializeField] private float spinDuration;
+    [SerializeField] private float spinGravity;
 
     [Header("Skill Info")]
     [SerializeField] private GameObject swordPrefab;
@@ -54,17 +64,49 @@ public class Sword_Skill : Skill
     protected override void Start()
     {
         base.Start();
+        SetupGravity();
         GenerateDots();
     }
+    private void SetupGravity()
+    {
+        switch (swordType)
+        {
+            case SwordType.Regular:
+                break;
+            case SwordType.Bounce:
+                swordGravity = bounceGravity;
+                break;
+            case SwordType.Pierce:
+                swordGravity = pierceGravity;
+                break;
+            case SwordType.Spin:
+                swordGravity = spinGravity;
+                break;
+            default:
+                break;
+        }
+    }
+
     public void CreateSword()
     {
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         Sword_Skill_Controller controller = newSword.GetComponent<Sword_Skill_Controller>();
 
-        if (swordType == SwordType.Bounce)
+        switch (swordType)
         {
-            swordGravity = bounceGravity;
-            controller.SetupBounce(true, amountOfBounce);
+            case SwordType.Regular:
+                break;
+            case SwordType.Bounce:
+                controller.SetupBounce(true, bounceAmount);
+                break;
+            case SwordType.Pierce:
+                controller.SetupPierce(pierceAmount);
+                break;
+            case SwordType.Spin:
+                controller.SetupSpin(true, maxTravelDistance, spinDuration, hitCooldown);
+                break;
+            default:
+                break;
         }
         controller.SetupSword(finalDir, swordGravity, player);
         player.AssignNewSword(newSword);

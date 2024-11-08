@@ -21,27 +21,39 @@ public class Enemy : Entity
     protected bool canBeStunned;
 
     public bool isAttacking;
+    public bool isInAir { get; set; } = true;
     public EnemyStateMachine stateMachine { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
         stateMachine = new EnemyStateMachine();
-
     }
-
     protected override void Start()
     {
         base.Start();
         whatIsPlayer = LayerMask.GetMask("Player");
     }
-
     protected override void Update()
     {
         base.Update();
         stateMachine.currentState.Update();
         if (attackCooldownTimer > 0)
             attackCooldownTimer -= Time.deltaTime;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isInAir = false;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isInAir = true;
+        }
     }
     public virtual void OpenCounterAttackWindow()
     {
@@ -65,14 +77,6 @@ public class Enemy : Entity
     public void AttackOver()
     {
         isAttacking = false;
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-
     }
     public RaycastHit2D isPlayerDetected() => Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + playerCheckPositionY), Vector2.right, facingDir * playerCheckDistance, whatIsPlayer);
 

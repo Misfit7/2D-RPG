@@ -13,6 +13,7 @@ public class Enemy_Skeleton : Enemy
     public SkeletonBattleState battleState { get; private set; }
     public SkeletonAttackState attackState { get; private set; }
     public SkeletonHitState hitState { get; private set; }
+    public SkeletonAirState airState { get; private set; }
 
     #endregion
 
@@ -27,8 +28,8 @@ public class Enemy_Skeleton : Enemy
         battleState = new SkeletonBattleState(stateMachine, this, "Move", this);
         attackState = new SkeletonAttackState(stateMachine, this, "Attack", this);
         hitState = new SkeletonHitState(stateMachine, this, "Hit", this);
+        airState = new SkeletonAirState(stateMachine, this, "Move", this);
     }
-
     protected override void Start()
     {
         base.Start();

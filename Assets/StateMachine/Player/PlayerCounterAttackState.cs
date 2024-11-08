@@ -19,6 +19,7 @@ public class PlayerCounterAttackState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        player.anim.SetBool("SuccessfulCounterAttack", false);
     }
 
     public override void Update()
@@ -33,7 +34,7 @@ public class PlayerCounterAttackState : PlayerState
             if (hit.GetComponent<Enemy>() != null)
                 if (hit.GetComponent<Enemy>().CanBeStunned())
                 {
-                    stateTimer = 10; // bigger than 1 just delay exit
+                    stateTimer = 1; // bigger than 1 just delay exit
                     player.anim.SetBool("SuccessfulCounterAttack", true);
                 }
         }

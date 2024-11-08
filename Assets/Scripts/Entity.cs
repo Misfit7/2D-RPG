@@ -67,6 +67,7 @@ public class Entity : MonoBehaviour
     {
 
     }
+
     public bool IsGoundedDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundDistance, whatIsGround);
     public bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallDistance, whatIsGround);
 

@@ -14,6 +14,10 @@ public class PlayerAnimEvent : MonoBehaviour
     {
         player.isCatchSword = true;
     }
+    private void AnimationTrigger()
+    {
+        player.AttackOver();
+    }
     private void AttackTrigger()
     {
         player.AttackOver();

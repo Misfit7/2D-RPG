@@ -22,8 +22,6 @@ public class SkeletonMoveState : SkeletonGroundedState
     public override void Update()
     {
         base.Update();
-
         enemy.SetVelocity(enemy.facingDir * enemy.moveSpeed, enemy.rb.velocity.y);
-
     }
 }

@@ -29,6 +29,11 @@ public class SkeletonGroundedState : EnemyState
         {
             stateMachine.ChangeState(enemy.battleState);
         }
+        if (enemy.isInAir)
+        {
+            stateMachine.ChangeState(enemy.airState);
+            return;
+        }
         if (!enemy.IsGoundedDetected() || enemy.IsWallDetected())
         {
             enemy.CharacterFlip();

@@ -5769,7 +5769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412099978}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.613, y: -0.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6450,9 +6450,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0
-  swordType: 0
-  amountOfBounce: 4
+  swordType: 3
+  bounceAmount: 4
   bounceGravity: 5
+  pierceAmount: 1
+  pierceGravity: 1
+  maxTravelDistance: 5
+  spinDuration: 2
+  spinGravity: 0.5
   swordPrefab: {fileID: 8182606408334380267, guid: 4cd38b98aeb52cb4e891a4215f6b242f, type: 3}
   launchForce: {x: 35, y: 20}
   swordGravity: 4
@@ -6496,11 +6501,11 @@ MonoBehaviour:
   groundCheck: {fileID: 412099979}
   wallCheck: {fileID: 1160375805}
   attackCheck: {fileID: 1784440270}
-  groundDistance: 0.1
+  groundDistance: 0.3
   wallDistance: 0.1
   attackCheckRadius: 0.8
   knockbackDirection: {x: 4, y: 4}
-  knockbackDuration: 0.07
+  knockbackDuration: 0.1
   stunDuration: 0.5
   stunDirection: {x: 6, y: 6}
   facingDir: 1
@@ -6960,11 +6965,11 @@ MonoBehaviour:
   groundCheck: {fileID: 929774629}
   wallCheck: {fileID: 1633200992}
   attackCheck: {fileID: 175146007}
-  groundDistance: 0.1
+  groundDistance: 0.3
   wallDistance: 0.1
   attackCheckRadius: 0.8
   knockbackDirection: {x: 4, y: 4}
-  knockbackDuration: 0.07
+  knockbackDuration: 0.1
   stunDuration: 0.5
   stunDirection: {x: 6, y: 6}
   facingDir: 1
@@ -7048,7 +7053,7 @@ Transform:
   m_GameObject: {fileID: 1376816814}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: -4.5, z: 0}
+  m_LocalPosition: {x: 8.1, y: -0.79, z: 0}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children:
