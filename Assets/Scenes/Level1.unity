@@ -6455,6 +6455,7 @@ MonoBehaviour:
   bounceGravity: 5
   pierceAmount: 1
   pierceGravity: 1
+  hitCooldown: 0.35
   maxTravelDistance: 5
   spinDuration: 2
   spinGravity: 0.5
